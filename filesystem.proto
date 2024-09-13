@@ -1,0 +1,42 @@
+// filesystem.proto
+syntax = "proto3";
+
+package filesystem;
+
+// The filesystem service definition.
+service FileSystem {
+  rpc ReadFile(ReadFileRequest) returns (ReadFileResponse);
+  rpc WriteFile(WriteFileRequest) returns (WriteFileResponse);
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse);
+}
+
+// The request message containing the filename.
+message ReadFileRequest {
+  string filename = 1;
+}
+
+// The response message containing the file content.
+message ReadFileResponse {
+  string content = 1;
+}
+
+// The request message containing the filename and content.
+message WriteFileRequest {
+  string filename = 1;
+  string content = 2;
+}
+
+// The response message indicating success or failure.
+message WriteFileResponse {
+  bool success = 1;
+}
+
+// The request message for listing files in a directory.
+message ListFilesRequest {
+  string directory = 1;
+}
+
+// The response message containing the list of filenames.
+message ListFilesResponse {
+  repeated string filenames = 1;
+}
